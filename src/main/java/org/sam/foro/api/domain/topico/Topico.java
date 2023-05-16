@@ -32,14 +32,13 @@ public class Topico {
     private StatusTopic status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_usuario_id")
     private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_curso_id")
     private Curso curso;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "topico", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "topico_id")
     private List<Respuesta> respuestas;
 
     @PrePersist

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.sam.foro.api.domain.topico.Topico;
 
 import java.util.ArrayList;
@@ -23,7 +22,8 @@ public class Curso {
     private String nombre;
     private String categoria;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "curso", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "curso_id")
     private List<Topico> topicos;
 
     public Curso(){

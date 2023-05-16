@@ -23,7 +23,8 @@ public class Usuario {
     private String email;
     private String password;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")
     private List<Topico> topicos;
 
     public Usuario(){
