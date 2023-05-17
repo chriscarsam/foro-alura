@@ -31,7 +31,7 @@ public class Usuario {
         this.topicos = new ArrayList<>();
     }
 
-    public Usuario(Usuario usuario) {
-        this.id = usuario.getId();
+    public Usuario(IdRegistroUsuario usuario) {
+        this.id = Long.valueOf(usuario.id());
     }
 }

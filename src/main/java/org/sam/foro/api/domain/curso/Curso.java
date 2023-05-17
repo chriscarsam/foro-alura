@@ -30,7 +30,7 @@ public class Curso {
         this.topicos = new ArrayList<>();
     }
 
-    public Curso(Curso curso) {
-        this.id = curso.getId();
+    public Curso(IdRegistroCurso curso) {
+        this.id = Long.valueOf(curso.id());
     }
 }

@@ -1,5 +1,6 @@
 package org.sam.foro.api.controller;
 
+import jakarta.validation.Valid;
 import org.sam.foro.api.domain.topico.DatosRegistroTopico;
 import org.sam.foro.api.domain.topico.Topico;
 import org.sam.foro.api.domain.topico.TopicoRepository;
@@ -19,7 +20,7 @@ public class TopicoController {
     }
 
     @PostMapping
-    public void registrarTopico(@RequestBody DatosRegistroTopico datosRegistroTopico){
+    public void registrarTopico(@RequestBody @Valid DatosRegistroTopico datosRegistroTopico){
        topicoRepository.save(new Topico(datosRegistroTopico));
     }
 }

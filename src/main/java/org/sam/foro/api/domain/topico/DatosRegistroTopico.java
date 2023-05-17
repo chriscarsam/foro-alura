@@ -1,15 +1,16 @@
 package org.sam.foro.api.domain.topico;
 
-import org.sam.foro.api.domain.curso.Curso;
-import org.sam.foro.api.domain.usuario.Usuario;
-
-import java.time.LocalDateTime;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.sam.foro.api.domain.curso.IdRegistroCurso;
+import org.sam.foro.api.domain.usuario.IdRegistroUsuario;
 
 public record DatosRegistroTopico(
-        String titulo,
-        String mensaje,
-        StatusTopic status,
-        Usuario usuario,
-        Curso curso
+        @NotBlank String titulo,
+        @NotBlank String mensaje,
+        @NotNull StatusTopic status,
+        @NotNull @Valid IdRegistroUsuario usuario,
+        @NotNull @Valid IdRegistroCurso curso
 ) {
 }
