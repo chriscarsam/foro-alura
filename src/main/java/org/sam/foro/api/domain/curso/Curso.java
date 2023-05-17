@@ -29,4 +29,8 @@ public class Curso {
     public Curso(){
         this.topicos = new ArrayList<>();
     }
+
+    public Curso(Curso curso) {
+        this.id = curso.getId();
+    }
 }

@@ -50,4 +50,13 @@ public class Topico {
         this.respuestas = new ArrayList<>();
         this.status = StatusTopic.NO_RESPONDIDO;
     }
+
+    public Topico(DatosRegistroTopico datosRegistroTopico) {
+        this.titulo = datosRegistroTopico.titulo();
+        this.mensaje = datosRegistroTopico.mensaje();
+        this.status = datosRegistroTopico.status();
+        this.usuario = new Usuario(datosRegistroTopico.usuario());
+        this.curso = new Curso(datosRegistroTopico.curso());
+    }
+
 }

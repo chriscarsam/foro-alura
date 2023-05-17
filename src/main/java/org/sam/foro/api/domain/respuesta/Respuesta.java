@@ -2,6 +2,7 @@ package org.sam.foro.api.domain.Respuesta;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.sam.foro.api.domain.curso.Curso;
 import org.sam.foro.api.domain.topico.Topico;
 import org.sam.foro.api.domain.usuario.Usuario;
 
@@ -36,4 +37,5 @@ public class Respuesta {
         this.fechaCreacion = LocalDateTime.now();
         this.solucion = false;
     }
+
 }

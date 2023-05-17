@@ -30,4 +30,8 @@ public class Usuario {
     public Usuario(){
         this.topicos = new ArrayList<>();
     }
+
+    public Usuario(Usuario usuario) {
+        this.id = usuario.getId();
+    }
 }
