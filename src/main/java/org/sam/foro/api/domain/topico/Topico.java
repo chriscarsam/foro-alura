@@ -59,4 +59,9 @@ public class Topico {
         this.curso = new Curso(datosRegistroTopico.curso());
     }
 
+    public void actualizarDatos(DatosActualizarTopico datosActualizarTopico) {
+        this.titulo = datosActualizarTopico.titulo();
+        this.mensaje = datosActualizarTopico.mensaje();
+        this.status = datosActualizarTopico.status();
+    }
 }

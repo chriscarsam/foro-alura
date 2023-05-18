@@ -1,10 +1,7 @@
 package org.sam.foro.api.controller;
 
 import jakarta.validation.Valid;
-import org.sam.foro.api.domain.topico.DatosListadoTopicos;
-import org.sam.foro.api.domain.topico.DatosRegistroTopico;
-import org.sam.foro.api.domain.topico.Topico;
-import org.sam.foro.api.domain.topico.TopicoRepository;
+import org.sam.foro.api.domain.topico.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -31,4 +28,11 @@ public class TopicoController {
     public Page<DatosListadoTopicos> listadoTopicos(@PageableDefault(size = 5, sort = "titulo") Pageable paginacion){
         return topicoRepository.findAll(paginacion).map(DatosListadoTopicos::new);
     }
+
+    @PutMapping
+    public void actualizarTopico(DatosActualizarTopico datosActualizarTopico){
+        Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
+        topico.actualizarDatos(datosActualizarTopico);
+    }
+
 }
