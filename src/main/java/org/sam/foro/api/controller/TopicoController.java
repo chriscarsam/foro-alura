@@ -41,6 +41,7 @@ public class TopicoController {
     @Transactional
     public void eliminarTopico(@PathVariable Long id){
         Topico topico = topicoRepository.getReferenceById(id);
-        topicoRepository.delete(topico);
+        topico.desactivarTopico(topico);    // eliminar logico
+        // topicoRepository.delete(topico); // eliminar medico
     }
 }

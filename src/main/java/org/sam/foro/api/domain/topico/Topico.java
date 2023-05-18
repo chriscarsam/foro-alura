@@ -31,6 +31,8 @@ public class Topico {
     @Enumerated(EnumType.STRING)
     private StatusTopic status;
 
+    private Boolean activo;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
@@ -52,6 +54,7 @@ public class Topico {
     }
 
     public Topico(DatosRegistroTopico datosRegistroTopico) {
+        this.activo = true;
         this.titulo = datosRegistroTopico.titulo();
         this.mensaje = datosRegistroTopico.mensaje();
         this.status = datosRegistroTopico.status();
@@ -69,5 +72,9 @@ public class Topico {
         if (datosActualizarTopico.status() != null){
             this.status = datosActualizarTopico.status();
         }
+    }
+
+    public void desactivarTopico(Topico topico) {
+        topico.activo = false;
     }
 }
