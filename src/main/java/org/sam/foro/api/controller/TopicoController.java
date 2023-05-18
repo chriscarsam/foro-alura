@@ -27,7 +27,8 @@ public class TopicoController {
 
     @GetMapping
     public Page<DatosListadoTopicos> listadoTopicos(@PageableDefault(size = 5, sort = "id") Pageable paginacion){
-        return topicoRepository.findAll(paginacion).map(DatosListadoTopicos::new);
+        //return topicoRepository.findAll(paginacion).map(DatosListadoTopicos::new);
+        return topicoRepository.findByActivoTrue(paginacion).map(DatosListadoTopicos::new);
     }
 
     @PutMapping
@@ -41,7 +42,6 @@ public class TopicoController {
     @Transactional
     public void eliminarTopico(@PathVariable Long id){
         Topico topico = topicoRepository.getReferenceById(id);
-        topico.desactivarTopico(topico);    // eliminar logico
-        // topicoRepository.delete(topico); // eliminar medico
+        topico.desactivarTopico();
     }
 }

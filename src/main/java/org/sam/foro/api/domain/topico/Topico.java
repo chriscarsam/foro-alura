@@ -74,7 +74,7 @@ public class Topico {
         }
     }
 
-    public void desactivarTopico(Topico topico) {
-        topico.activo = false;
+    public void desactivarTopico() {
+        this.activo = false;
     }
 }
