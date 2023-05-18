@@ -5,6 +5,9 @@ import org.sam.foro.api.domain.topico.DatosListadoTopicos;
 import org.sam.foro.api.domain.topico.DatosRegistroTopico;
 import org.sam.foro.api.domain.topico.Topico;
 import org.sam.foro.api.domain.topico.TopicoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +28,7 @@ public class TopicoController {
     }
 
     @GetMapping
-    public List<DatosListadoTopicos> listadoTopicos(){
-        return topicoRepository.findAll().stream().map(DatosListadoTopicos::new).toList();
+    public Page<DatosListadoTopicos> listadoTopicos(@PageableDefault(size = 5) Pageable paginacion){
+        return topicoRepository.findAll(paginacion).map(DatosListadoTopicos::new);
     }
 }
