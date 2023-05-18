@@ -28,7 +28,7 @@ public class TopicoController {
     }
 
     @GetMapping
-    public Page<DatosListadoTopicos> listadoTopicos(@PageableDefault(size = 5) Pageable paginacion){
+    public Page<DatosListadoTopicos> listadoTopicos(@PageableDefault(size = 5, sort = "titulo") Pageable paginacion){
         return topicoRepository.findAll(paginacion).map(DatosListadoTopicos::new);
     }
 }
