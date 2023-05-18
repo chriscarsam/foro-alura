@@ -60,8 +60,14 @@ public class Topico {
     }
 
     public void actualizarDatos(DatosActualizarTopico datosActualizarTopico) {
-        this.titulo = datosActualizarTopico.titulo();
-        this.mensaje = datosActualizarTopico.mensaje();
-        this.status = datosActualizarTopico.status();
+        if (datosActualizarTopico.titulo() != null){
+            this.titulo = datosActualizarTopico.titulo();
+        }
+        if (datosActualizarTopico.mensaje() != null){
+            this.mensaje = datosActualizarTopico.mensaje();
+        }
+        if (datosActualizarTopico.status() != null){
+            this.status = datosActualizarTopico.status();
+        }
     }
 }

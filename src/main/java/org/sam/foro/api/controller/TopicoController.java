@@ -1,5 +1,6 @@
 package org.sam.foro.api.controller;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.sam.foro.api.domain.topico.*;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,8 @@ public class TopicoController {
     }
 
     @PutMapping
-    public void actualizarTopico(DatosActualizarTopico datosActualizarTopico){
+    @Transactional
+    public void actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico){
         Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
         topico.actualizarDatos(datosActualizarTopico);
     }
