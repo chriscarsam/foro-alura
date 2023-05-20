@@ -37,14 +37,14 @@ public class TopicoController {
     }
 
     @GetMapping
-    public Page<DatosListadoTopicos> listadoTopicos(@PageableDefault(size = 5, sort = "id") Pageable paginacion){
+    public ResponseEntity<Page<DatosListadoTopicos>> listadoTopicos(@PageableDefault(size = 5, sort = "id") Pageable paginacion){
         //return topicoRepository.findAll(paginacion).map(DatosListadoTopicos::new);
-        return topicoRepository.findByActivoTrue(paginacion).map(DatosListadoTopicos::new);
+        return ResponseEntity.ok(topicoRepository.findByActivoTrue(paginacion).map(DatosListadoTopicos::new));
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico){
+    public ResponseEntity<DatosRespuestaTopico> actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico){
         Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
         topico.actualizarDatos(datosActualizarTopico);
         return ResponseEntity.ok(new DatosRespuestaTopico(topico.getId(), topico.getTitulo(), topico.getMensaje(), topico.getStatus(), topico.getFechaCreacion(),
@@ -58,5 +58,14 @@ public class TopicoController {
         Topico topico = topicoRepository.getReferenceById(id);
         topico.desactivarTopico();
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DatosRespuestaTopico> retornaDatosRopico(@PathVariable Long id){
+        Topico topico = topicoRepository.getReferenceById(id);
+        DatosRespuestaTopico datosRespuestaTopico = new DatosRespuestaTopico(topico.getId(), topico.getTitulo(), topico.getMensaje(), topico.getStatus(), topico.getFechaCreacion(),
+                new IdRegistroUsuario(topico.getUsuario().getId().toString()),
+                new IdRegistroCurso(topico.getCurso().getId().toString()));
+        return ResponseEntity.ok(datosRespuestaTopico);
     }
 }
