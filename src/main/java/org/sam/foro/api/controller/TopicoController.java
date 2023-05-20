@@ -2,10 +2,13 @@ package org.sam.foro.api.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.sam.foro.api.domain.curso.IdRegistroCurso;
 import org.sam.foro.api.domain.topico.*;
+import org.sam.foro.api.domain.usuario.IdRegistroUsuario;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,15 +36,19 @@ public class TopicoController {
 
     @PutMapping
     @Transactional
-    public void actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico){
+    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico){
         Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
         topico.actualizarDatos(datosActualizarTopico);
+        return ResponseEntity.ok(new DatosRespuestaTopico(topico.getId(), topico.getTitulo(), topico.getMensaje(), topico.getStatus(), topico.getFechaCreacion(),
+                new IdRegistroUsuario(topico.getUsuario().getId().toString()),
+                new IdRegistroCurso(topico.getCurso().getId().toString())));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void eliminarTopico(@PathVariable Long id){
+    public ResponseEntity eliminarTopico(@PathVariable Long id){
         Topico topico = topicoRepository.getReferenceById(id);
         topico.desactivarTopico();
+        return ResponseEntity.noContent().build();
     }
 }
