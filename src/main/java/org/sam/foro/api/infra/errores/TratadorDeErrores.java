@@ -1,4 +1,4 @@
-package org.sam.foro.api.infra;
+package org.sam.foro.api.infra.errores;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
