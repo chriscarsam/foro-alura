@@ -18,7 +18,7 @@ public class ApiApplication {
 	public OpenAPI customOpenApi() {
 		return new OpenAPI()
 				.info(new Info()
-						.title("ChrisrianSam - Spring Boot 3")
+						.title("ChristianSam - Spring Boot 3")
 						.version("0.0.1")
 						.description(" API FORO ALURA")
 						.termsOfService("http://swagger.io/terms/")
