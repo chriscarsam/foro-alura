@@ -2,6 +2,7 @@ package org.sam.foro.api.controller;
 
 import jakarta.validation.Valid;
 import org.sam.foro.api.domain.usuario.DatosAutenticacionUsuario;
+import org.sam.foro.api.infra.security.TokenService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,16 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class AutenticacionController {
 
     private AuthenticationManager authenticationManager;
+    private TokenService tokenService;
 
-    public AutenticacionController(AuthenticationManager authenticationManager){
+    public AutenticacionController(AuthenticationManager authenticationManager, TokenService tokenService){
         this.authenticationManager = authenticationManager;
+        this.tokenService = tokenService;
     }
 
     @PostMapping
     public ResponseEntity autenticarUsuario(@RequestBody @Valid DatosAutenticacionUsuario datosAutenticacionUsuario){
-        Authentication token = new UsernamePasswordAuthenticationToken(datosAutenticacionUsuario.email(),
+        Authentication authToken = new UsernamePasswordAuthenticationToken(datosAutenticacionUsuario.email(),
                 datosAutenticacionUsuario.password());
-        authenticationManager.authenticate(token);
-        return ResponseEntity.ok().build();
+        authenticationManager.authenticate(authToken);
+        var JWTtoken = tokenService.generarToken();
+        return ResponseEntity.ok(JWTtoken);
     }
 }
