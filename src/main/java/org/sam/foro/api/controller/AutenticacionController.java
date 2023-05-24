@@ -2,6 +2,8 @@ package org.sam.foro.api.controller;
 
 import jakarta.validation.Valid;
 import org.sam.foro.api.domain.usuario.DatosAutenticacionUsuario;
+import org.sam.foro.api.domain.usuario.Usuario;
+import org.sam.foro.api.infra.security.DatosJWTToken;
 import org.sam.foro.api.infra.security.TokenService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,8 +30,8 @@ public class AutenticacionController {
     public ResponseEntity autenticarUsuario(@RequestBody @Valid DatosAutenticacionUsuario datosAutenticacionUsuario){
         Authentication authToken = new UsernamePasswordAuthenticationToken(datosAutenticacionUsuario.email(),
                 datosAutenticacionUsuario.password());
-        authenticationManager.authenticate(authToken);
-        var JWTtoken = tokenService.generarToken();
-        return ResponseEntity.ok(JWTtoken);
+        var usuarioAutendicado  = authenticationManager.authenticate(authToken);
+        var JWTtoken = tokenService.generarToken((Usuario) usuarioAutendicado.getPrincipal());
+        return ResponseEntity.ok(new DatosJWTToken(JWTtoken));
     }
 }
