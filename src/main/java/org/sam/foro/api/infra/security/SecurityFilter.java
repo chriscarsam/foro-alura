@@ -13,7 +13,11 @@ import java.io.IOException;
 public class SecurityFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        var token = request.getHeader("Authorization").replace("Bearer ", "");
+        var token = request.getHeader("Authorization");
+        if (token.isBlank()){
+            throw new RuntimeException("El token enviado no es valido");
+        }
+        token = token.replace("Bearer ", "");
         System.out.println(token);
         filterChain.doFilter(request, response);
     }
