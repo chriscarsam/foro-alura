@@ -29,8 +29,8 @@ public class SecurityConfigurations {
                 .and().authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/login")
                 .permitAll()
-                .anyRequest()
-                .authenticated()
+                .requestMatchers(AUTH_WHITELIST)
+                .permitAll()
                 .and()
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
@@ -45,4 +45,11 @@ public class SecurityConfigurations {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+    private static final String[] AUTH_WHITELIST = {
+            "/api/v1/aut/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html"
+    };
 }
