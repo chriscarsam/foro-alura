@@ -57,7 +57,6 @@ public class SecurityConfigurations {
             "/api/v1/aut/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/swagger-ui.html",
-            "/topicos/**"
+            "/swagger-ui.html"
     };
 }

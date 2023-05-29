@@ -1,4 +1,4 @@
-package org.sam.foro.api.domain.Respuesta;
+package org.sam.foro.api.domain.respuesta;
 
 import jakarta.persistence.*;
 import lombok.*;

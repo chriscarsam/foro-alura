@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.sam.foro.api.domain.Respuesta.Respuesta;
+import org.sam.foro.api.domain.respuesta.Respuesta;
 import org.sam.foro.api.domain.curso.Curso;
 import org.sam.foro.api.domain.usuario.Usuario;
 
