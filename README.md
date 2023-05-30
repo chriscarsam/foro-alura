@@ -1,4 +1,5 @@
-# ![Screenshot from 2023-05-29 17-10-33](https://github.com/chriscarsam/foro-alura/assets/28877424/34b283cb-5bce-48e8-ab62-65397d51c846) Challenge ONE | Back End | Foro Alura
+
+# ![209678377-70b50b21-33de-424c-bed8-6a71ef3406ff](https://github.com/chriscarsam/foro-alura/assets/28877424/3d87da57-2512-4f87-969e-5a18c4bfc304) Challenge ONE | Back End | Foro Alura
 
 
 En este desafío, vamos a implementar a nivel de back end (CRUD) el proceso de un foro, y para eso crearemos una API REST usando Spring.
@@ -28,22 +29,57 @@ Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/resources/d
 
 ### 🔹Registro de un nuevo tópico
 &emsp; La API debe tener un endpoint para el registro de nuevos tópicos y debe aceptar solicitudes POST para el URI /topicos.
+```bash
+[POST] http://localhost:8080/topicos
+```
+```json
+{
+	"titulo": "Laravel 8",
+	"mensaje": "Consulta de Laravel 8 conexipon con PostGrestSQL",	
+	"status": "NO_RESPONDIDO",
+	"usuario":{
+		"id": "1"}
+	,
+	"curso": {
+		"id": "2"
+	}
+}
+```
 ![Screenshot from 2023-05-28 17-32-31](https://github.com/chriscarsam/foro-alura/assets/28877424/87688b0d-d0f1-48cb-a1fc-e3e26c5403aa)
 
 ### 🔹Mostrar todos los tópicos
 &emsp; La API debe tener un endpoint para la lista de todos los tópicos y debe aceptar solicitudes GET para el URI /topicos.
+```bash
+[GET] http://localhost:8080/topicos?size=10
+```
 ![Screenshot from 2023-05-28 17-33-56](https://github.com/chriscarsam/foro-alura/assets/28877424/d64a1379-b843-49d0-9cba-9f3f7a45f67d)
 
 ### 🔹Detallando un tópico
 &emsp; La API debe tener un endpoint para la lista de todos los tópicos y debe aceptar solicitudes GET para el URI /topicos/{id}.
+```bash
+[GET] http://localhost:8080/topicos/3
+```
 ![Screenshot from 2023-05-28 17-34-22](https://github.com/chriscarsam/foro-alura/assets/28877424/6e84c466-ab4f-4b8e-a6f9-895f9d7a946d)
 
 ### 🔹Actualizar un tópico
 &emsp; La API debe tener un endpoint para el registro de nuevos tópicos y debe aceptar solicitudes PUT para el URI /topicos/{id}.
+```bash
+[PUT] http://localhost:8080/topicos
+```
+```json
+{
+	"id": 3,
+	"titulo": "PHP 7",
+	"mensaje": "Consulta de PHP 7 Conexión con mysql"
+}
+```
 ![Screenshot from 2023-05-28 17-36-08](https://github.com/chriscarsam/foro-alura/assets/28877424/349c199e-a02b-4fd1-86c5-112c39045087)
 
 ### 🔹Eliminar un tópico
 &emsp; La API debe tener un endpoint para la eliminación de tópicos y debe aceptar requisiciones DELETE para el URI /topicos/{id}.
+```bash
+[DELETE] http://localhost:8080/topicos/3
+```
 ![Screenshot from 2023-05-28 17-37-05](https://github.com/chriscarsam/foro-alura/assets/28877424/cdda4335-3288-4bab-9b2c-4e4eaaaad92c)
 
 ## 📃 Challenge ONE - API REST - Spring 2
@@ -53,10 +89,24 @@ Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/resources/d
 
 ### 🔹Generar un token usando JWT
 &emsp; Para agregar mayor seguridad a tu aplicación, una opción muy ventajosa es requerir tokens para la autenticación. 
+```bash
+[POST] 	http://localhost:8080/login
+```
+```json
+{
+	"email": "user@email.com",
+	"password": "123456"
+}
+```
 ![Screenshot from 2023-05-29 13-13-42](https://github.com/chriscarsam/foro-alura/assets/28877424/91ccf37e-32c6-409b-aa82-27f36c4eeb6b)
 
 ### 🔹Autenticación con JWT
 &emsp; Una vez que se genera el token con JWT, será necesario usarlo para autenticar el proceso de registros, eliminación, actualización, listado.
+```json
+{
+	"jwTtoken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGVtYWlsLmNvbSIsImlzcyI6ImZvcm8gYXBpIiwiaWQiOjEsImV4cCI6MTY4NTMzMDIwNX0.Lnu4RX-8V91svB4zguSP9Z34HVDSe__sQkp-Hqe9UXQ"
+}
+```
 ![Screenshot from 2023-05-29 13-14-35](https://github.com/chriscarsam/foro-alura/assets/28877424/423e80e1-d2b6-4380-8e88-cc72320d44d4)
 
 ## 📚 Tecnologías 
@@ -70,6 +120,7 @@ Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/resources/d
 - [Lombok](https://www.baeldung.com/intro-to-project-lombok)
 - [Flyway](https://www.baeldung.com/database-migrations-with-flyway)
 - [Swagger](https://www.baeldung.com/spring-rest-openapi-documentation)
+- [JWT](https://jwt.io/)
 
 ## 📝 Dependencias utilizadas
 Link: https://github.com/chriscarsam/foro-alura/blob/master/pom.xml
@@ -79,10 +130,10 @@ Link: https://github.com/chriscarsam/foro-alura/blob/master/pom.xml
 Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/java/org/sam/foro/api
 ![Screenshot from 2023-05-28 20-27-12](https://github.com/chriscarsam/foro-alura/assets/28877424/56bd8fd4-63fb-46c8-949b-77c6e4658553)
 
-### 📝 Commits realizados:
+## 📝 Commits realizados:
 Link: https://github.com/chriscarsam/foro-alura/commits/master
 
-⭐ ChristianSam
+![insignia](https://github.com/chriscarsam/foro-alura/assets/28877424/fb51f5ba-3c89-4800-bd2d-697fb138e24f) ChristianSam
 
-[![img](https://camo.githubusercontent.com/c00f87aeebbec37f3ee0857cc4c20b21fefde8a96caf4744383ebfe44a47fe3f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4c696e6b6564496e2d2532333030373742353f7374796c653d666f722d7468652d6261646765266c6f676f3d6c696e6b6564696e266c6f676f436f6c6f723d7768697465)](https://www.linkedin.com/in/christian-sambachi-491782174/)
+
 
