@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: foro-app
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.17.0.2/foro_api
+    username: user
+    password: clave
+  jpa:
+    show-sql: true
+  properties:
+    hibernate:
+      format_sql: true
+server:
+  error:
+    include-stacktrace: never
+api:
+  security:
+    secret: ${JWT_SECRET:123456}
+
+# habilitar/deshabilitar api-docs - swagger-ui
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+# definir la ruta de swagger-ui
+    path: /swagger.ui.html
+# seleccionar paquetes, clases a escanear
+    pathsToMatch: /topicos/**, /login

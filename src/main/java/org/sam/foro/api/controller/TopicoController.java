@@ -38,7 +38,6 @@ public class TopicoController {
         return ResponseEntity.created(uri).body(datosRespuestaTopico);
     }
 
-    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     public ResponseEntity<Page<DatosListadoTopicos>> listadoTopicos(@PageableDefault(size = 5, sort = "id") Pageable paginacion){
         //return topicoRepository.findAll(paginacion).map(DatosListadoTopicos::new);
@@ -65,7 +64,6 @@ public class TopicoController {
         return ResponseEntity.noContent().build();
     }
 
-    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{id}")
     public ResponseEntity<DatosRespuestaTopico> retornaDatosRopico(@PathVariable Long id){
         Topico topico = topicoRepository.getReferenceById(id);
