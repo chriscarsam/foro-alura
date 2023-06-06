@@ -21,7 +21,7 @@ Un foro es una comunidad en línea que facilita la comunicación y el intercambi
 ### ⬇️ Repositorio Base Alura
 https://github.com/alura-challenges/challenge-one-foro-alura
 
-## 📃 Challenge ONE - API REST - Spring 1
+# 📃 Challenge ONE - API REST - Spring 1
 
 ### 🔹Diagrama de base de datos:
 Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/resources/db/migration
@@ -30,8 +30,9 @@ Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/resources/d
 ### 🔹Registro de un nuevo tópico
 &emsp; La API debe tener un endpoint para el registro de nuevos tópicos y debe aceptar solicitudes POST para el URI /topicos.
 ```bash
-[POST] http://localhost:8080/topicos
+[ POST ] http://localhost:8080/topicos
 ```
+
 ```json
 {
 	"titulo": "Laravel 8",
@@ -50,22 +51,23 @@ Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/resources/d
 ### 🔹Mostrar todos los tópicos
 &emsp; La API debe tener un endpoint para la lista de todos los tópicos y debe aceptar solicitudes GET para el URI /topicos.
 ```bash
-[GET] http://localhost:8080/topicos?size=10
+[ GET ] http://localhost:8080/topicos?size=10
 ```
 ![Screenshot from 2023-05-28 17-33-56](https://github.com/chriscarsam/foro-alura/assets/28877424/d64a1379-b843-49d0-9cba-9f3f7a45f67d)
 
 ### 🔹Detallando un tópico
 &emsp; La API debe tener un endpoint para la lista de todos los tópicos y debe aceptar solicitudes GET para el URI /topicos/{id}.
 ```bash
-[GET] http://localhost:8080/topicos/3
+[ GET ] http://localhost:8080/topicos/3
 ```
 ![Screenshot from 2023-05-28 17-34-22](https://github.com/chriscarsam/foro-alura/assets/28877424/6e84c466-ab4f-4b8e-a6f9-895f9d7a946d)
 
 ### 🔹Actualizar un tópico
 &emsp; La API debe tener un endpoint para el registro de nuevos tópicos y debe aceptar solicitudes PUT para el URI /topicos/{id}.
 ```bash
-[PUT] http://localhost:8080/topicos
+[ PUT ] http://localhost:8080/topicos
 ```
+
 ```json
 {
 	"id": 3,
@@ -78,20 +80,27 @@ Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/resources/d
 ### 🔹Eliminar un tópico
 &emsp; La API debe tener un endpoint para la eliminación de tópicos y debe aceptar requisiciones DELETE para el URI /topicos/{id}.
 ```bash
-[DELETE] http://localhost:8080/topicos/3
+[ DELETE ] http://localhost:8080/topicos/3
 ```
 ![Screenshot from 2023-05-28 17-37-05](https://github.com/chriscarsam/foro-alura/assets/28877424/cdda4335-3288-4bab-9b2c-4e4eaaaad92c)
 
-## 📃 Challenge ONE - API REST - Spring 2
+# 📃 Challenge ONE - API REST - Spring 2
 ### 🔹Documentación con Swagger
 &emsp; Swagger es una herramienta extremadamente ventajosa para tu API, ya que ofrece una interfaz fácil amigable y accesible, así como una forma de documentación automática, generada simultáneamente con el desarrollo de la API.
-![Screenshot from 2023-05-28 17-23-46](https://github.com/chriscarsam/foro-alura/assets/28877424/7bce8329-10c0-4d7a-aea8-6a77c355f974)
+
+```bash
+[ URL ] http://localhost:8080/login](http://localhost:8080/swagger-ui/index.html#/
+```
+
+![Screenshot from 2023-06-06 17-23-44](https://github.com/chriscarsam/foro-alura/assets/28877424/ee310076-d6b1-47d4-8979-03b656c98eb0)
+
 
 ### 🔹Generar un token usando JWT
 &emsp; Para agregar mayor seguridad a tu aplicación, una opción muy ventajosa es requerir tokens para la autenticación. 
 ```bash
-[POST] 	http://localhost:8080/login
+[ POST ] http://localhost:8080/login
 ```
+
 ```json
 {
 	"email": "user@email.com",
@@ -101,13 +110,27 @@ Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/resources/d
 ![Screenshot from 2023-05-29 13-13-42](https://github.com/chriscarsam/foro-alura/assets/28877424/91ccf37e-32c6-409b-aa82-27f36c4eeb6b)
 
 ### 🔹Autenticación con JWT
-&emsp; Una vez que se genera el token con JWT, será necesario usarlo para autenticar el proceso de registros, eliminación, actualización, listado.
+&emsp; Una vez que se genera el token con JWT, será necesario usarlo para autenticar el proceso de registros, eliminación, actualización.
+
 ```json
 {
 	"jwTtoken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGVtYWlsLmNvbSIsImlzcyI6ImZvcm8gYXBpIiwiaWQiOjEsImV4cCI6MTY4NTMzMDIwNX0.Lnu4RX-8V91svB4zguSP9Z34HVDSe__sQkp-Hqe9UXQ"
 }
 ```
-![Screenshot from 2023-05-29 13-14-35](https://github.com/chriscarsam/foro-alura/assets/28877424/423e80e1-d2b6-4380-8e88-cc72320d44d4)
+### &emsp; Endpoints
+---
+
+| Endpoint                     | Método      | Acceso                   | Descripción                         |
+| ---------------------------- | ----------- | ------------------------ | ----------------------------------- |
+| /login                       | POST        | Público                  | Genera par de tokens                |
+| /topicos                     | GET         | Público                  | Mostrar todos los tópicos creados   |
+| /topicos/{id}                | GET         | Público                  | Mostrar un tópico específico        |
+| /topicos                     | POST        | Privado/Protegido        | Crear un nuevo tópico               |
+| /topicos                     | PUT         | Privado/Protegido        | Actualizar un tópico                |
+| /topicos/{id}                | DELETE      | Privado/Protegido        | Eliminar un tópico                  |
+
+---
+![Screenshot from 2023-06-06 18-07-14](https://github.com/chriscarsam/foro-alura/assets/28877424/1b2ff4d8-0af6-4b87-8425-92c4e2eb6717)
 
 ## 📚 Tecnologías 
 - [OpenJDK JDK 17](https://openjdk.org/projects/jdk/17/)
@@ -125,7 +148,7 @@ Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/resources/d
 ## 📝 Dependencias utilizadas
 Link: https://github.com/chriscarsam/foro-alura/blob/master/pom.xml
 ![Screenshot from 2023-05-29 13-30-47](https://github.com/chriscarsam/foro-alura/assets/28877424/5499f44f-57ab-4695-a75c-d1510e3345d9)
-
+---
 ## 📝 Estructura del proyecto
 Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/java/org/sam/foro/api
 ![Screenshot from 2023-05-28 20-27-12](https://github.com/chriscarsam/foro-alura/assets/28877424/56bd8fd4-63fb-46c8-949b-77c6e4658553)
@@ -133,7 +156,10 @@ Link: https://github.com/chriscarsam/foro-alura/tree/master/src/main/java/org/sa
 ## 📝 Commits realizados:
 Link: https://github.com/chriscarsam/foro-alura/commits/master
 
+---
+
 ![insignia](https://github.com/chriscarsam/foro-alura/assets/28877424/fb51f5ba-3c89-4800-bd2d-697fb138e24f) ChristianSam
+
 
 
 
