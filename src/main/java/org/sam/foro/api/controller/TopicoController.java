@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/topicos")
 public class TopicoController {
 
-    private TopicoRepository topicoRepository;
+    private final TopicoRepository topicoRepository;
 
     public TopicoController(TopicoRepository topicoRepository){
         this.topicoRepository = topicoRepository;
